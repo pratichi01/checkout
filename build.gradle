@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.5.0'
+}
+
+group 'checkout'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // tag::actuator[]
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.5.0'
+    // end::actuator[]
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.0'
+    // tag::tests[]
+    //testImplementation('org.springframework.boot:spring-boot-starter-test')
+    // end::tests[]
+}
+
+test {
+    //useJUnitPlatform()
+}
