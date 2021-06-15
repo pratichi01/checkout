@@ -12,10 +12,13 @@ repositories {
 }
 
 dependencies {
-    // tag::actuator[]
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
     implementation 'org.springframework.boot:spring-boot-starter-actuator:2.5.0'
-    // end::actuator[]
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.0'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+
     // tag::tests[]
     //testImplementation('org.springframework.boot:spring-boot-starter-test')
     // end::tests[]
