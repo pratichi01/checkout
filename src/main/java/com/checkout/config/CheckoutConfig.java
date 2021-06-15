@@ -1,5 +1,11 @@
 package com.checkout.config;
 
+import com.checkout.model.DiscounType;
+import com.checkout.model.Discount;
+import com.checkout.model.Product;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -25,5 +31,26 @@ public class CheckoutConfig {
         .paths(PathSelectors.any())
         .build();
   }
+
+  @Bean
+  public List<Product> productList(){
+    List<Product> productList = new ArrayList<>();
+    Product product1 = new Product(
+        "001", "Rolex", 100L,
+        new Discount(DiscounType.VOLUME_DISCOUNT, 3, 200L));
+    Product product2 = new Product(
+        "002", "Michael Kors", 80L,
+        new Discount(DiscounType.VOLUME_DISCOUNT, 2, 120L));
+    Product product3 = new Product(
+        "003", "Swatch", 50L, new Discount(DiscounType.NONE));
+    Product product4 = new Product(
+        "004", "Casio", 30L, new Discount(DiscounType.NONE));
+    productList.add(product1);
+    productList.add(product2);
+    productList.add(product3);
+    productList.add(product4);
+    return productList;
+  }
+
 
 }

@@ -10,11 +10,16 @@
 
 
 ## Design Consideration:  
-1. The project consists of a Product entity with an extendable discount design 
-   ### First Approach
-   a. I have considered a discount type field which will tell the discount is percentage, fixed or custom
-   b. Based on the type we can instantiate the discount implementation classusing a factory pattern
-   ### Second Approach
-   a. We can write a string parser on the discount field to identify what is the discount type and then following the above approach
+1. The project consists of a Product entity with an extendable discount design.
+2. The product contains a discount object. Currently it has a discount type and parameters for discount.
+3. The discountService calcualtes the discounted Price. It contains a method calculateDiscountPrice which further has a different methods for price calculations based on dicount type.
+4. This design can be extended with different discounted Price calculation classes.
+5. The product repository returns the product object based on id.
+
+
+## ExceptionHandling
+1. if any of the Id of the product is not present then "null" will be returned. 
+2. Later this can be changed to throw an exception.
+
+## Test
    
-I am going by the first approach where in addition to the fields you have mention for the catalogue type, discount type will also be there to make the design extendable and support different discount types later.

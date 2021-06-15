@@ -1,8 +1,8 @@
-package com.checkout.domain;
+package com.checkout.model;
 
 public enum DiscounType {
   NONE,
   PERCENTAGE,
   FIXED,
-  CUSTOM;
+  VOLUME_DISCOUNT;
 }
