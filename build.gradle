@@ -14,14 +14,16 @@ repositories {
 dependencies {
     compileOnly "org.projectlombok:lombok:$rev_lombok"
     annotationProcessor "org.projectlombok:lombok:$rev_lombok"
+
     implementation "org.springframework.boot:spring-boot-starter-actuator:$rev_springboot"
     implementation "org.springframework.boot:spring-boot-starter-web:$rev_springboot"
+
     implementation "io.springfox:springfox-swagger-ui:$rev_swagger"
     implementation "io.springfox:springfox-swagger2:$rev_swagger"
 
     testImplementation "org.junit.jupiter:junit-jupiter:$rev_junit"
     testImplementation "org.mockito:mockito-core:$rev_mockito"
-    testImplementation "org.mockito:mockito-inline:$rev_mockito"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:$rev_springboot"
 }
 
 test {
