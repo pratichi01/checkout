@@ -12,9 +12,11 @@
 ## Design Consideration:  
 1. The project consists of a Product entity with an extendable discount design.
 2. The product contains a discount object. Currently it has a discount type and parameters for discount.
-3. The discountService calcualtes the discounted Price. It contains a method calculateDiscountPrice which further has a different methods for price calculations based on dicount type.
-4. This design can be extended with different discounted Price calculation classes.
-5. The product repository returns the product object based on id.
+3. The checkoutService builds the cart and calls the CartPriceCalculator Service.
+4. The CartPriceCalculator Service fetches the details of each product and calls DiscountPriceCalculator to get the price of each item.   
+5. The DiscountPriceCalculator calcualtes the discounted Price for the give product. It contains a method calculateDiscountPrice which further has a different methods for price calculations based on dicount type.
+6. This design can be extended with different discounted Price calculation classes.
+7. The product repository returns the product object based on id.
 
 
 ## ExceptionHandling
@@ -22,4 +24,6 @@
 2. Later this can be changed to throw an exception.
 
 ## Test
+1. All the services classes are unit tested using the Junit and Mockito framework.
+
    

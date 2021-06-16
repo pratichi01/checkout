@@ -5,7 +5,8 @@ import com.checkout.model.Product;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DiscountService {
+public class DiscountPriceCalculator {
+
   Long calculateDiscountPrice(Product product, Integer productCount) {
     if (product.getDiscount().getDiscounType().equals(DiscounType.NONE))
       return getPriceWithoutDiscount(product, productCount);
@@ -27,4 +28,5 @@ public class DiscountService {
     price = price + reminder*product.getPrice();
     return price;
   }
+
 }
