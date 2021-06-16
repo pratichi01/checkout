@@ -1,0 +1,85 @@
+apply plugin: 'jacoco'
+
+def exclusions = [
+        //config class
+        '**/config/*',
+        '**/model/*.class',
+
+        //exception classes
+        '**/exception/**/*',
+]
+
+test {
+    jacoco {
+        excludes = exclusions
+    }
+}
+
+// Jacoco report task.
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: exclusions)
+        })
+    }
+}
+
+
+
+// Ensures that test always runs before jacocoTestReport
+jacocoTestReport.dependsOn test
+jacocoTestCoverageVerification.finalizedBy(jacocoTestReport)
+
+// The minimum can be pruned as we go.
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            // Possible counter/value/etc strings at https://www.eclemma.org/jacoco/trunk/doc/check-mojo.html
+            // refer: https://reflectoring.io/jacoco/
+            limit {
+                counter = 'INSTRUCTION'
+                value = 'COVEREDRATIO'
+                minimum = 0.8
+            }
+            limit {
+                counter = 'BRANCH'
+                value = 'COVEREDRATIO'
+                minimum = 0.8
+            }
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.8
+            }
+            limit {
+                counter = 'METHOD'
+                value = 'COVEREDRATIO'
+                minimum = 0.7
+            }
+            limit {
+                counter = 'CLASS'
+                value = 'COVEREDRATIO'
+                minimum = 0.8
+            }
+        }
+
+    }
+
+    // exclude annotation processor generated classes, dto from coverage metric
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: exclusions)
+        })
+    }
+}
+
+// Ensures that test and jacocoTestCoverageVerification always run together with test followed by jacocoTestCoverageVerification
+jacocoTestCoverageVerification.dependsOn test
+jacocoTestCoverageVerification.mustRunAfter test
+// to run coverage verification during the build (and fail when appropriate)
+test.finalizedBy(jacocoTestCoverageVerification)

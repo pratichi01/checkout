@@ -27,4 +27,5 @@
 1. All the services classes are unit tested using the Junit and Mockito framework.
 2. CheckoutControllerTest class contains the integration test. The input is fed to the test method and it asserts the expected price. Input can be changed to verify different scenarios.
 
-   
+## Jacoco coverage
+1. The jacoco coverage report can be found at checkout/build/reports/jacoco/test/html/index.html
